@@ -1,0 +1,23 @@
+from taigacomm import taiga_comm as coms
+import requests
+import pprint
+class TaigaReader(coms.TaigaCommunicator):
+
+    def getStoryByRef(self,refid):
+        return requests.get(self.config['APIHost']+'/api/v1/userstories/by_ref',params={'ref':refid,'project':'92046'},headers=self.AuthorizationHeader).json()
+
+    def getTasksbyStory(self,user_story_id):
+        return requests.get('https://api.taiga.io/api/v1/tasks',headers=self.AuthorizationHeader, params={'project':'92046','user_story':user_story_id}).json()
+    
+    def getIssuesByStory(self,refid):
+        return requests.get('https://api.taiga.io/api/v1/issues',headers=self.AuthorizationHeader, params={'order_by':'status','project':'92046','q':refid}).json()
+
+    def getIssueById(self,refid):
+        return requests.get('https://api.taiga.io/api/v1/issues/by_ref',headers=self.AuthorizationHeader,params={'ref':refid,'project':'92046'}).json()
+
+    def getEpicByid(self,refid):
+        return requests.get('https://api.taiga.io/api/v1/epics/by_ref',headers=self.AuthorizationHeader,params={'ref':refid,'project':'92046'}).json()
+
+    def getStoriesByEpic(self,epic_id):
+        return requests.get('https://api.taiga.io/api/v1/epics/'+epic_id +'/related_userstories',headers=self.AuthorizationHeader).json()
+
