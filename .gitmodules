@@ -1,0 +1,3 @@
+[submodule "taigacomm"]
+	path = taigacomm
+	url = https://github.com/praveenkumar-s/taiga-comm.git
