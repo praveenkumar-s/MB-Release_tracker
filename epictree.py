@@ -19,8 +19,8 @@ class EpicTree():
     epic_closed_stories=None
     epic_open_stories=None
 
-    def __init__(self, ref_id):
-        TR=TaigaReader()
+    def __init__(self, ref_id, project_id):
+        TR=TaigaReader(project_id=project_id)
         TR.AuthUser(os.environ["TAIGA_UN"],os.environ["TAIGA_PWD"])
         epic=TR.getEpicByid(ref_id)
         self.epic_id=epic['id']

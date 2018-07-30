@@ -6,21 +6,23 @@ from collections import OrderedDict
 import json
 
 
+
 #release_date=json.load(open("release_dates_sample.json"), object_pairs_hook=OrderedDict)
 
 def processor(release_date_json):
+    config=json.load(open('TaigaConfig.json'))
     output=OrderedDict()
-    for items in release_date_json:
+    for items in release_date_json['dates']:
         output[items]=[]
-        for subitems in release_date_json[items]:
+        for subitems in release_date_json['dates'].get(items):
             if(subitems['kind']=='story'):
-                operation=storytree.StorytTree(subitems['ref'])
+                operation=storytree.StorytTree(subitems['ref'], config['project_ids'][release_date_json['product']])
                 output[items].append(operation.get())
             if(subitems['kind']=='issue'):
-                operation=issuetree.IssueTree(subitems['ref'])
+                operation=issuetree.IssueTree(subitems['ref'], config['project_ids'][release_date_json['product']])
                 output[items].append(operation.get())
             if(subitems['kind']=='epic'):
-                operation=epictree.EpicTree(subitems['ref'])
+                operation=epictree.EpicTree(subitems['ref'], config['project_ids'][release_date_json['product']])
                 output[items].append(operation.get())
     return json.dumps(output)
 

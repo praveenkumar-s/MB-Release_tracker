@@ -10,6 +10,8 @@
     "issue_status_names":[{"product_name":"Moviebuff",
         "project_id":"92046",
         "issue_open_status_name":"Level1",
-        "issue_close_status_name":"Ready For Prod"}]
-        
+        "issue_close_status_name":"Ready For Prod"}],
+    "project_ids":{
+        "moviebuff":"92046"
+    }
 }

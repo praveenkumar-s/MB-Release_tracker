@@ -10,8 +10,8 @@ class IssueTree():
     issue_id=None
     issue_status=None
     issue_desc=None
-    def __init__(self,issue_ref):
-        TR=TaigaReader()
+    def __init__(self,issue_ref, project_id):
+        TR=TaigaReader(project_id=project_id)
         TR.AuthUser(os.environ["TAIGA_UN"],os.environ["TAIGA_PWD"])
         issue=TR.getIssueById(issue_ref)
         self.issue_ref=issue_ref

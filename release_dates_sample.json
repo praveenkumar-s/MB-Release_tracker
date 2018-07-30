@@ -1,67 +1,68 @@
-{
-    "July 31 2018":[
-        {
-            "kind":"story",
-            "ref":"4500"            
-        },
-        {
-            "kind":"story",
-            "ref":"4507"
-        },
-        {
-            "kind":"issue",
-            "ref":"4472"
-        },
-        {
-            "kind":"issue",
-            "ref":"4471"
-        }
-    ],
-    "August 6 2018":[
-        {"kind":"epic",
-         "ref":"4690"
-         },
-         {
-             "kind":"story",
-             "ref":"4566"
-         }
-    ],
-    "August 13 2018":[
-        {
-            "kind":"story",
-            "ref":"4508"
-
-        },
-        {
-            "kind":"epic",
-            "ref":"2978"
-        },
-        {
-            "kind":"epic",
-            "ref":"3244"
-        }
-    ],
-    "Sept 17 2018":[
-        {
-            "kind":"epic",
-            "ref":"3903"
-        }
-    ],
-    "Sept 17 2018":[
-        {
-            "kind":"epic",
-            "ref":"4700"
-        },
-        {
-            "kind":"epic",
-            "ref":"1203"
-        }
-    ],
-    "Sept 28 2018":[
-        {
-            "kind":"epic",
-            "ref":"1336"
-        }
-    ]
+{"product":"Moviebuff",
+    "dates":{
+        "July 31 2018":[
+            {
+                "kind":"story",
+                "ref":"4500"            
+            },
+            {
+                "kind":"story",
+                "ref":"4507"
+            },
+            {
+                "kind":"issue",
+                "ref":"4472"
+            },
+            {
+                "kind":"issue",
+                "ref":"4471"
+            }
+        ],
+        "August 6 2018":[
+            {"kind":"epic",
+             "ref":"4690"
+             },
+             {
+                 "kind":"story",
+                 "ref":"4566"
+             }
+        ],
+        "August 13 2018":[
+            {
+                "kind":"story",
+                "ref":"4508"
     
-}
+            },
+            {
+                "kind":"epic",
+                "ref":"2978"
+            },
+            {
+                "kind":"epic",
+                "ref":"3244"
+            }
+        ],
+        "Sept 17 2018":[
+            {
+                "kind":"epic",
+                "ref":"3903"
+            }
+        ],
+        "Sept 17 2018":[
+            {
+                "kind":"epic",
+                "ref":"4700"
+            },
+            {
+                "kind":"epic",
+                "ref":"1203"
+            }
+        ],
+        "Sept 28 2018":[
+            {
+                "kind":"epic",
+                "ref":"1336"
+            }
+        ]
+        
+    }}

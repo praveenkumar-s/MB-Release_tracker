@@ -40,8 +40,8 @@ class StorytTree():
     Pending_issues=None
 
 
-    def __init__(self, story_ref):
-        TR=TaigaReader()
+    def __init__(self, story_ref , project_id):
+        TR=TaigaReader(project_id=project_id)
         TR.AuthUser(os.environ["TAIGA_UN"],os.environ["TAIGA_PWD"])
         story=TR.getStoryByRef(story_ref)
         self.story_ref=story_ref
