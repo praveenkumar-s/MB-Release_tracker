@@ -28,6 +28,6 @@ def processor(release_date_json):
 
 
 def plan2html(plan):
-    return json2html.convert(json = plan, table_attributes="allign=\"center\" border=\"1\" id=\"info-table\" class=\"table table-bordered table-hover\"")
+    return json2html.convert(json = plan, table_attributes="align=\"center\" border=\"3\" id=\"info-table\" class=\"table table-bordered table-hover\"")
 
 
