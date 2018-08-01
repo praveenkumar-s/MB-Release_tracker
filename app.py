@@ -15,10 +15,19 @@ HTMLTEMPLATE="""
 <html lang="en">
 <head>
 <title>Live Release Tracker</title>
+<style>
+div {
+    width: 1220px;
+    margin: auto;
+    border: 1px solid red;
+}
+</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+<div>
    {0}
+</div>
 </body>
 </html>
 
@@ -49,7 +58,7 @@ def get_tracking_status():
     p1=process.processor(json.loads(plan, object_pairs_hook=OrderedDict))
     p2=process.plan2html(p1)
     html_parser = HTMLParser.HTMLParser()
-    return HTMLTEMPLATE.format(html_parser.unescape(p2))
+    return HTMLTEMPLATE.replace('{0}',html_parser.unescape(p2))
 
 if __name__ == '__main__':
     from os import environ
