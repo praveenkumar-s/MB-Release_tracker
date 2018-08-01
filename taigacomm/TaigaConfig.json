@@ -1,0 +1,15 @@
+{
+    "APIHost":"https://api.taiga.io",
+    "AuthEndpoint":"/api/v1/auth",
+    "issueEndpoint":"/api/v1/issues",
+    "projects":"/api/v1/projects",
+    "issue_status":"api/v1/issue-statuses",
+    "priority":"api/v1/priorities",
+    "severity":"api/v1/severities",
+    "issue_types":"api/v1/issue-types",
+    "issue_status_names":[{"product_name":"Moviebuff",
+        "project_id":"92046",
+        "issue_open_status_name":"Level1",
+        "issue_close_status_name":"Ready For Prod"}]
+        
+}
