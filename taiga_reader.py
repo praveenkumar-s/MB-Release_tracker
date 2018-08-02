@@ -1,6 +1,7 @@
 from taigacomm import taiga_comm as coms
 import requests
 import pprint
+import urlparse
 class TaigaReader(coms.TaigaCommunicator):
     
     def getStoryByRef(self,refid):
@@ -21,3 +22,15 @@ class TaigaReader(coms.TaigaCommunicator):
     def getStoriesByEpic(self,epic_id):
         return requests.get('https://api.taiga.io/api/v1/epics/'+epic_id +'/related_userstories',headers=self.AuthorizationHeader).json()
 
+    def set_Auth_token(self,user,password):
+        datatemplate="""{
+            "password": "{PASS}",
+            "type": "normal",
+            "username": "{USER}"
+            }"""
+        data=datatemplate.replace("{PASS}",password).replace("{USER}",user)
+        response=requests.post(url=urlparse.urljoin(self.config["APIHost"],self.config["AuthEndpoint"]),data=data,headers={"Content-Type":"application/json"})
+        if(response.status_code==200):
+            return response.json()['auth_token']
+        else:
+            return None

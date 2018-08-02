@@ -60,7 +60,13 @@ class TaigaCommunicator:
     #!parameters --> username:{Taiga_User_Name}  password:{Taiga_Password}
     #! Retruns OK if fine. Else Retruns "ERROR"
     def AuthUser(self, username,password):
+        if(os.environ.has_key('auth_token')):    
+            if(os.environ['auth_token']!=None):
+                self.AuthorizationHeader={"Authorization":"Bearer "+ os.environ['auth_token'] }
+                return "OK"
+        
         #*Data Template for POST Request for Authorization
+        print("Authorizating your session!!!")
         datatemplate="""{
         "password": "{PASS}",
         "type": "normal",
@@ -70,13 +76,14 @@ class TaigaCommunicator:
         response=requests.post(url=urlparse.urljoin(self.config["APIHost"],self.config["AuthEndpoint"]),data=data,headers={"Content-Type":"application/json"})
         if(response.status_code==200):
             self.Userdata=json.loads(response.content)
+            os.environ['auth_token']=self.Userdata["auth_token"]
             self.AuthorizationHeader={"Authorization":"Bearer "+self.Userdata["auth_token"]}
             return "OK"
         else:
             return "ERROR: "+str(json.loads(response.content)["_error_message"])
 
 
-
+    
 
 
     #!Get Details about the Issue by Issue Id

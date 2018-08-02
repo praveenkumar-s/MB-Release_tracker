@@ -4,12 +4,16 @@ import epictree
 from json2html import *
 from collections import OrderedDict
 import json
+from taiga_reader import TaigaReader
+import os
 
 
 
 #release_date=json.load(open("release_dates_sample.json"), object_pairs_hook=OrderedDict)
 
 def processor(release_date_json):
+    TR=TaigaReader(project_id=release_date_json['product'])
+    TR.set_Auth_token(os.environ["TAIGA_UN"],os.environ["TAIGA_PWD"])
     config=json.load(open('TaigaConfig.json'))
     output=OrderedDict()
     for items in release_date_json['dates']:
