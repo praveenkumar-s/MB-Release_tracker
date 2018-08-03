@@ -1,7 +1,7 @@
 from flask import Flask
 from datetime import datetime
 from flask import request
-from flask import render_template
+from flask import render_template_string
 import uuid
 import firebase_client
 import process
@@ -56,9 +56,8 @@ def get_tracking_status():
     FBC=firebase_client.Firebase_Client()
     plan=FBC.getdb().child(key).get().val()
     p1=process.processor(json.loads(plan, object_pairs_hook=OrderedDict))
-    p2=process.plan2html(p1)
-    html_parser = HTMLParser.HTMLParser()
-    return HTMLTEMPLATE.replace('{0}',html_parser.unescape(p2))
+    p1=process.processor(json.loads(plan, object_pairs_hook=OrderedDict))
+    return render_template_string(p1)
 
 if __name__ == '__main__':
     from os import environ
