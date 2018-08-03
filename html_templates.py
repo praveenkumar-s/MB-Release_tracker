@@ -154,30 +154,33 @@ data_container="""
 """
 story_container="""
 
-    <h4>
+    <h5>
       <p>{0}</p>
-    </h4>
+    </h5>
+    
     <ul>
-      <li><p>{1}</p></li>
-      <li><p>{2}</p></li>
-      <li><p>{3}</li>
-    </ul>"""
+      <li><p><font size="2">{1}</font></p></li>
+      <li><p><font size="2">{2}</font></p></li>
+      <li><p><font size="2">{3}</font></li>
+    </ul>
+    </font>"""
 
 epic_container="""
-<h4>
+<h5>
 <p>{0}</p>
-</h4>
+</h5>
 <ul>
-<li><p>{1}</p></li>
-<li><p>{2}</p></li>
+<li><p><font size="2">{1}</font></p></li>
+<li><p><font size="2">{2}</font></p></li>
 </ul>
+</font>
 """
 
 issue_containter="""
-<h4>
+<h5>
 <p>{0}</p>
-</h4>
+</h5>
 <ul>
-<li><p>{1}</p></li>
+<li><p><font size="2">{1}</font></p></li>
 </ul>
 """
