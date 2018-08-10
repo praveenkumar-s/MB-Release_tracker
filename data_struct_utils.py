@@ -16,3 +16,4 @@ def groupby_year_month(jsondata,data_struct={}):
             data_struct[year][month]=[]
             data_struct[year][month].append({pandas.to_datetime(items).strftime('%D') :jsondata[items]}) 
     return data_struct
+
