@@ -45,7 +45,7 @@ class TaigaReader(coms.TaigaCommunicator):
 
         for items in response.json():
             if(items['status_extra_info']['name']=='Released'):
-                date=pd.to_datetime(items['modified_date']).strftime('%D')
+                date=pd.to_datetime(items['modified_date'])
                 data={
                     "ref":items['ref'],
                     "subject":items['subject'],
@@ -66,7 +66,7 @@ class TaigaReader(coms.TaigaCommunicator):
 
         for items in response.json():
             if(items['status_extra_info']['name']=='Released'):
-                date=pd.to_datetime(items['modified_date']).strftime('%D')
+                date=pd.to_datetime(items['modified_date'])
                 data={
                     "ref":items['ref'],
                     "subject":items['subject'],

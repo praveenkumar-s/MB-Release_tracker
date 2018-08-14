@@ -141,15 +141,15 @@
 <body>
 
 <div class="timeline">
-{% for years in data.keys() | sort%}
+{% for dates in data | sort%}
   <div class="container left">
     <div class="content">
-      <h2><center>{{ years }}</center></h2>
-      <ul id="navigation">
-          {%for months in monthSorter(data[years].keys()) %}
-          <li><a href="{{ '/release_history/'+product+'/'+years+'/'+months }}">{{months}}</a></li>
-          {% endfor %}
+      <h2><center>{{ dateformat(dates) }}</center></h2>
+            {% for items in data[dates] %}
+      <ul>
+          <li><i>{{items[0]['ref']}}</i> <a>{{' '+items[0]['subject']}}</a></li>
       </ul>
+      {% endfor %}
     </div>
   </div>
   {% endfor %}
