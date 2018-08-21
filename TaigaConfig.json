@@ -12,6 +12,9 @@
         "issue_open_status_name":"Level1",
         "issue_close_status_name":"Ready For Prod"}],
     "project_ids":{
-        "moviebuff":"92046"
+        "moviebuff":"92046",
+        "moviepass":"29888",
+        "slydes":"167933",
+        "justickets":"144110"
     }
 }

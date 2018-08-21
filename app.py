@@ -14,7 +14,8 @@ from flask_caching import Cache
 import requests
 from jinja2 import Template
 import data_struct_utils as du
-
+import flask
+import urllib
 
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
@@ -34,6 +35,20 @@ def createReleasePlan():
     except:
         return 'error'
 
+@app.route('/<product>/createplan',methods=['POST'])
+def createReleasePlanByProduct(product):
+    plan_data=request.data
+    FBC=firebase_client.Firebase_Client()
+    rs=requests.post('http://0.0.0.0:5000/createplan',data=plan_data)
+    id=rs.content
+    try:
+        FBC.putvalue('Latest_'+product,id)
+        return id
+    except:
+        return 'error'
+
+
+
 @app.route('/track',methods=['GET'])
 @cache.cached(timeout=25)
 def get_tracking_status():
@@ -43,9 +58,18 @@ def get_tracking_status():
     p1=process.processor(json.loads(plan, object_pairs_hook=OrderedDict))
     return render_template_string(p1)
 
+@app.route('/<product>/latest', methods=['GET'])
+@cache.cached(timeout=25)
+def getTrackingStatusByProduct(product):
+    FBC=firebase_client.Firebase_Client()
+    id=FBC.getdb().child('Latest_'+product).get().val()
+    plan=FBC.getdb().child(id).get().val()
+    p1=process.processor(json.loads(plan, object_pairs_hook=OrderedDict))
+    return render_template_string(p1)
+
 
 @app.route('/release_history_backend/<product>', methods=['GET'])
-@cache.cached(timeout=50)
+@cache.memoize(timeout=50)
 def releasehistorypage(product):
     return jsonify( process.process_historical_releases(product_name=product))
 
@@ -67,6 +91,6 @@ def release_history_year(product,year,month):
 
 
 if __name__ == '__main__':
-    from os import environ    
+    from os import environ
     app.run(debug=False , host='0.0.0.0', port=environ.get("PORT", 5000), threaded=True)
     
