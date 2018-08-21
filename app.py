@@ -77,14 +77,14 @@ def releasehistorypage(product):
 
 @app.route('/release_history/<product>', methods=['GET'])
 def releasehistory(product,methods=['GET']):
-    rs=requests.get('http://0.0.0.0:5000/release_history_backend/'+product)
+    rs=requests.get('https://releasetracker.herokuapp.com/release_history_backend/'+product)
     data=rs.json()
     return render_template('releasehistory.html', data= data , product = product, monthSorter= du.monthSorter)
 
 
 @app.route('/release_history/<product>/<year>/<month>',methods=['GET'])
 def release_history_year(product,year,month):
-    rs=requests.get('http://0.0.0.0:5000/release_history_backend/'+product)
+    rs=requests.get('https://releasetracker.herokuapp.com/release_history_backend/'+product)
     data=rs.json()
     return render_template('releasehistoryDetail.html', data=data[year][month], dateformat=du.date_formater )
     
