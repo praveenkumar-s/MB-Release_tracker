@@ -2,6 +2,8 @@ from taigacomm import taiga_comm as coms
 import requests
 import pprint
 import urlparse
+import pandas as pd
+
 class TaigaReader(coms.TaigaCommunicator):
     
     def getStoryByRef(self,refid):
@@ -34,3 +36,45 @@ class TaigaReader(coms.TaigaCommunicator):
             return response.json()['auth_token']
         else:
             return None
+    
+    def getReleasedStories(self):
+        self.AuthorizationHeader.update({'x-disable-pagination':'True'})
+        response=requests.get(url='https://api.taiga.io/api/v1/userstories', headers= self.AuthorizationHeader , params={'project': self.project_id , 'status_id':"530828"})
+        #TODO status id has been hardcoded for moviebuff only .Can read from config once we make this available for other products
+        data_set={}
+
+        for items in response.json():
+            if(items['status_extra_info']['name']=='Released'):
+                date=pd.to_datetime(items['modified_date'])
+                data={
+                    "ref":items['ref'],
+                    "subject":items['subject'],
+                    "status":items['status_extra_info']['name']
+                }
+                if(data_set.has_key(date)):
+                    data_set[date].append(data)
+                else:
+                    data_set[date]=[]
+                    data_set[date].append(data)
+        return data_set
+    
+    def getReleasedIssues(self):
+        self.AuthorizationHeader.update({'x-disable-pagination':'True'})
+        response=requests.get(url='https://api.taiga.io/api/v1/issues', headers= self.AuthorizationHeader , params={'project': self.project_id , 'status_id':"530828"})
+        
+        data_set={}
+
+        for items in response.json():
+            if(items['status_extra_info']['name']=='Released'):
+                date=pd.to_datetime(items['modified_date'])
+                data={
+                    "ref":items['ref'],
+                    "subject":items['subject'],
+                    "status":items['status_extra_info']['name']
+                }
+                if(data_set.has_key(date)):
+                    data_set[date].append(data)
+                else:
+                    data_set[date]=[]
+                    data_set[date].append(data)
+        return data_set

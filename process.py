@@ -6,7 +6,7 @@ import json
 from taiga_reader import TaigaReader
 import os
 import html_templates
-
+import data_struct_utils
 container_class='container right'
 
 def swap_container_class():
@@ -43,3 +43,15 @@ def processor(release_date_json):
     contents=html_templates.base_page.replace('{ELEMENTS_OF_TIMELINE}',contents)    
     return contents
 
+def process_historical_releases(product_name,product_id=None):
+    if(product_id==None):
+        config=json.load(open('TaigaConfig.json'))
+        product_id=config['project_ids'][product_name]    
+    TR=TaigaReader(project_id=product_id)
+    os.environ['auth_token']= TR.set_Auth_token(os.environ["TAIGA_UN"],os.environ["TAIGA_PWD"])
+    TR.AuthUser(os.environ["TAIGA_UN"],os.environ["TAIGA_PWD"])
+    releasedStories= TR.getReleasedStories()
+    releaseIssues=TR.getReleasedIssues()
+    release_data=data_struct_utils.groupby_year_month(releasedStories)
+    release_data=data_struct_utils.groupby_year_month(releaseIssues,release_data)
+    return release_data
