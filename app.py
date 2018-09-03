@@ -59,7 +59,7 @@ def get_tracking_status():
     return render_template_string(p1)
 
 @app.route('/<product>/latest', methods=['GET'])
-@cache.cached(timeout=25)
+#@cache.cached(timeout=25)
 def getTrackingStatusByProduct(product):
     FBC=firebase_client.Firebase_Client()
     id=FBC.getdb().child('Latest_'+product).get().val()
