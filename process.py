@@ -50,6 +50,9 @@ def process_historical_releases(product_name,product_id=None):
     TR=TaigaReader(project_id=product_id)
     os.environ['auth_token']= TR.set_Auth_token(os.environ["TAIGA_UN"],os.environ["TAIGA_PWD"])
     TR.AuthUser(os.environ["TAIGA_UN"],os.environ["TAIGA_PWD"])
+    releasedStories=None
+    releaseIssues=None
+    release_data=None
     releasedStories= TR.getReleasedStories()
     releaseIssues=TR.getReleasedIssues()
     release_data=data_struct_utils.groupby_year_month(releasedStories)

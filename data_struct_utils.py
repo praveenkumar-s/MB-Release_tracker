@@ -21,8 +21,10 @@ def groupby_year_month(jsondata,data_struct={}):
             data_struct[year]={}
             data_struct[year][month]={}
             data_struct[year][month][date]=[] 
-            data_struct[year][month][date].append(jsondata[items]) 
-    return data_struct
+            data_struct[year][month][date].append(jsondata[items])
+    copy=data_struct
+    data_struct=None
+    return copy
 
 
 def monthSorter(list):    

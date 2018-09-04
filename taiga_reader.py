@@ -39,7 +39,7 @@ class TaigaReader(coms.TaigaCommunicator):
     
     def getReleasedStories(self):
         self.AuthorizationHeader.update({'x-disable-pagination':'True'})
-        response=requests.get(url='https://api.taiga.io/api/v1/userstories', headers= self.AuthorizationHeader , params={'project': self.project_id , 'status_id':"530828"})
+        response=requests.get(url='https://api.taiga.io/api/v1/userstories', headers= self.AuthorizationHeader , params={'project': self.project_id })
         #TODO status id has been hardcoded for moviebuff only .Can read from config once we make this available for other products
         data_set={}
 
@@ -60,7 +60,7 @@ class TaigaReader(coms.TaigaCommunicator):
     
     def getReleasedIssues(self):
         self.AuthorizationHeader.update({'x-disable-pagination':'True'})
-        response=requests.get(url='https://api.taiga.io/api/v1/issues', headers= self.AuthorizationHeader , params={'project': self.project_id , 'status_id':"530828"})
+        response=requests.get(url='https://api.taiga.io/api/v1/issues', headers= self.AuthorizationHeader , params={'project': self.project_id })
         
         data_set={}
 

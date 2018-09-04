@@ -59,7 +59,7 @@ def get_tracking_status():
     return render_template_string(p1)
 
 @app.route('/<product>/latest', methods=['GET'])
-#@cache.cached(timeout=25)
+@cache.cached(timeout=25)
 def getTrackingStatusByProduct(product):
     FBC=firebase_client.Firebase_Client()
     id=FBC.getdb().child('Latest_'+product).get().val()
@@ -69,7 +69,7 @@ def getTrackingStatusByProduct(product):
 
 
 @app.route('/release_history_backend/<product>', methods=['GET'])
-#@cache.memoize(timeout=50)
+@cache.memoize(timeout=50)
 def releasehistorypage(product):
     return jsonify( process.process_historical_releases(product_name=product))
 
