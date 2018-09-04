@@ -1,7 +1,8 @@
 import pandas
 
-def groupby_year_month(jsondata,data_struct={}):
-    
+def groupby_year_month(jsondata,data_struct=None):
+    if(data_struct==None):
+        data_struct={}
     for items in jsondata.keys():
         year=pandas.to_datetime(items).strftime('%Y')
         month= pandas.to_datetime(items).strftime('%B')
