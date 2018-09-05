@@ -55,6 +55,6 @@ def process_historical_releases(product_name,product_id=None):
     release_data=None
     releasedStories= TR.getReleasedStories()
     releaseIssues=TR.getReleasedIssues()
-    release_data=data_struct_utils.groupby_year_month(releasedStories)
-    release_data=data_struct_utils.groupby_year_month(releaseIssues,release_data)
+    release_data=data_struct_utils.groupby_year_month(jsondata=releasedStories,data_struct=None)
+    release_data=data_struct_utils.groupby_year_month(jsondata=releaseIssues,data_struct=release_data)
     return release_data
