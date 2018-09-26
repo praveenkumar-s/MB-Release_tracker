@@ -39,7 +39,7 @@ def createReleasePlan():
 def createReleasePlanByProduct(product):
     plan_data=request.data
     FBC=firebase_client.Firebase_Client()
-    rs=requests.post('http://0.0.0.0:5000/createplan',data=plan_data)
+    rs=requests.post('https://releasetracker.herokuapp.com/createplan',data=plan_data)
     id=rs.content
     try:
         FBC.putvalue('Latest_'+product,id)
