@@ -138,7 +138,7 @@ python-jwt==2.0.1
 python-socketio==1.9.0
 python-taiga==0.9.0
 pytz==2017.2
-PyYAML==3.12
+PyYAML==5.4
 requestium==0.1.8
 requests==2.19.1
 requests-file==1.4.2
