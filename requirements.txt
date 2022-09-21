@@ -134,7 +134,7 @@ pytest-html==1.16.1
 pytest-metadata==1.6.0
 python-dateutil==2.6.1
 python-engineio==2.1.1
-python-jwt==2.0.1
+python-jwt==3.3.4
 python-socketio==1.9.0
 python-taiga==0.9.0
 pytz==2017.2
